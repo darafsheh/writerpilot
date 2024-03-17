@@ -5,6 +5,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getURL, getErrorRedirect, getStatusRedirect } from 'utils/helpers';
 import { getAuthTypes } from 'utils/auth-helpers/settings';
+import { createOrRetrieveCustomer } from '@/utils/supabase/admin';
 
 function isValidEmail(email: string) {
   var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -194,6 +195,12 @@ export async function signUp(formData: FormData) {
       error.message
     );
   } else if (data.session) {
+    //Create Stripe Customer
+    let createStripeCustomer : string;
+    createStripeCustomer = await createOrRetrieveCustomer({
+      uuid: data.user?.id || '',
+      email: data.user?.email || ''
+    });
     redirectPath = getStatusRedirect('/', 'Success!', 'You are now signed in.');
   } else if (
     data.user &&
