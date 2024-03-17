@@ -201,6 +201,7 @@ export async function signUp(formData: FormData) {
       uuid: data.user?.id || '',
       email: data.user?.email || ''
     });
+    // ---
     redirectPath = getStatusRedirect('/', 'Success!', 'You are now signed in.');
   } else if (
     data.user &&
