@@ -37,7 +37,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
 };
 
 //Update Customer Entitlements upon webhook
-const upsertFeatureRecord = async (entitlement: Stripe.Entitlement) => {
+const upsertFeatureRecord = async (entitlement: Stripe.CustomerEntitlementSummary) => {
   console.log("Entitlements webhook recieved...");
 
   // Get customer's UUID from mapping table.
