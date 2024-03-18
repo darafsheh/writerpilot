@@ -2,7 +2,7 @@ import { toDateTime } from '@/utils/helpers';
 import { stripe } from '@/utils/stripe/config';
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
-import type { Database, Tables, TablesInsert } from 'types_db';
+import type { Database, Tables, TablesInsert, Json } from 'types_db';
 
 type Product = Tables<'products'>;
 type Price = Tables<'prices'>;
@@ -55,7 +55,7 @@ const upsertFeatureRecord = async (entitlement: Stripe.CustomerEntitlementSummar
   const EntitlementData: Entitlement = {
     id: uuid,
     stripe_customer_id: entitlement.customer,
-    access: entitlement.entitlements.data ?? null
+    access: entitlement.entitlements.data as Array<Json> ?? null
   };
 
   const { error: upsertError } = await supabaseAdmin
