@@ -66,9 +66,9 @@ export async function POST(req: Request) {
             event.type === 'customer.subscription.created'
           );
           break;
-        // case 'customer.entitlement_summary.updated':
-        //   await upsertFeatureRecord(event.data.object as Stripe.Entitlement);
-        //   break;
+        case 'customer.entitlement_summary.updated':
+          await upsertFeatureRecord(event.data.object as Stripe.Entitlement);
+          break;
         case 'checkout.session.completed':
           const checkoutSession = event.data.object as Stripe.Checkout.Session;
           if (checkoutSession.mode === 'subscription') {
