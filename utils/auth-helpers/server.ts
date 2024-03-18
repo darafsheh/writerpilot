@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getURL, getErrorRedirect, getStatusRedirect } from 'utils/helpers';
 import { getAuthTypes } from 'utils/auth-helpers/settings';
-import { createOrRetrieveCustomer } from '@/utils/supabase/admin';
+import { createOrRetrieveCustomer, createFreemiumSubscription } from '@/utils/supabase/admin';
 
 function isValidEmail(email: string) {
   var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -201,6 +201,16 @@ export async function signUp(formData: FormData) {
       uuid: data.user?.id || '',
       email: data.user?.email || ''
     });
+    // .then(customer => {
+    //   console.log("Print Customer Created: ...");
+    //   console.log(customer);
+    //   let freemiumSubscription : string;
+    //   freemiumSubscription = await createFreemiumSubscription(customer);
+    // });
+    console.log("Print Customer Created: ...");
+    console.log(createStripeCustomer);
+    let freemiumSubscription : string;
+    freemiumSubscription = await createFreemiumSubscription(createStripeCustomer);
     // ---
     redirectPath = getStatusRedirect('/', 'Success!', 'You are now signed in.');
   } else if (

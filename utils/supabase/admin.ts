@@ -111,6 +111,19 @@ const createCustomerInStripe = async (uuid: string, email: string) => {
   return newCustomer.id;
 };
 
+const createFreemiumSubscription = async (customerId: string) => {
+  const subscriptionData = {
+    customer: customerId,
+    items: [{ price: 'price_1OvUxRKQnrcgpBBRD1jxJ00f'}]
+  };
+  const newSubscription = await stripe.subscriptions.create(subscriptionData);
+  if (!newSubscription) throw new Error('Stripe freemium subscription creation failed.');
+
+  console.log("Subscription Created Object: ");
+  console.log(newSubscription);
+  return newSubscription.id;
+};
+
 const createOrRetrieveCustomer = async ({
   email,
   uuid
@@ -288,5 +301,6 @@ export {
   deleteProductRecord,
   deletePriceRecord,
   createOrRetrieveCustomer,
-  manageSubscriptionStatusChange
+  manageSubscriptionStatusChange,
+  createFreemiumSubscription
 };
