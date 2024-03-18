@@ -127,7 +127,7 @@ const deletePriceRecord = async (price: Stripe.Price) => {
 const upsertCustomerToSupabase = async (uuid: string, customerId: string) => {
   const { error: upsertError } = await supabaseAdmin
     .from('customers')
-    .upsert([{ id: uuid, stripe_customer_id: customerId }]);
+    .upsert([{ id: uuid, stripe_customer_id: customerId, access:[] }]);
 
   if (upsertError)
     throw new Error(`Supabase customer record creation failed: ${upsertError.message}`);
@@ -200,7 +200,7 @@ const createOrRetrieveCustomer = async ({
     if (existingSupabaseCustomer.stripe_customer_id !== stripeCustomerId) {
       const { error: updateError } = await supabaseAdmin
         .from('customers')
-        .update({ stripe_customer_id: stripeCustomerId })
+        .update({ stripe_customer_id: stripeCustomerId, access: [] })
         .eq('id', uuid);
 
       if (updateError)
