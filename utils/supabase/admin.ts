@@ -6,6 +6,7 @@ import type { Database, Tables, TablesInsert } from 'types_db';
 
 type Product = Tables<'products'>;
 type Price = Tables<'prices'>;
+type Entitlement = Tables<'customers'>;
 
 // Change to control trial period length
 const TRIAL_PERIOD_DAYS = 0;
@@ -33,6 +34,36 @@ const upsertProductRecord = async (product: Stripe.Product) => {
   if (upsertError)
     throw new Error(`Product insert/update failed: ${upsertError.message}`);
   console.log(`Product inserted/updated: ${product.id}`);
+};
+
+//Update Customer Entitlements upon webhook
+const upsertFeatureRecord = async (entitlement: Stripe.Entitlement) => {
+  console.log("Entitlements webhook recieved...");
+
+  // Get customer's UUID from mapping table.
+  const { data: customerData, error: noCustomerError } = await supabaseAdmin
+    .from('customers')
+    .select('id')
+    .eq('stripe_customer_id', entitlement.customer)
+    .single();
+
+  if (noCustomerError)
+    throw new Error(`Customer lookup failed: ${noCustomerError.message}`);
+
+  const { id: uuid } = customerData!;
+
+  const EntitlementData: Entitlement = {
+    id: uuid,
+    stripe_customer_id: entitlement.customer,
+    access: entitlement.entitlements.data ?? null
+  };
+
+  const { error: upsertError } = await supabaseAdmin
+    .from('customers')
+    .upsert([EntitlementData]);
+  
+  console.log(upsertError);
+  console.log(entitlement);
 };
 
 const upsertPriceRecord = async (
@@ -302,5 +333,6 @@ export {
   deletePriceRecord,
   createOrRetrieveCustomer,
   manageSubscriptionStatusChange,
-  createFreemiumSubscription
+  createFreemiumSubscription,
+  upsertFeatureRecord
 };

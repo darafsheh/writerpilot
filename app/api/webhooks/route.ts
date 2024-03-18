@@ -5,7 +5,8 @@ import {
   upsertPriceRecord,
   manageSubscriptionStatusChange,
   deleteProductRecord,
-  deletePriceRecord
+  deletePriceRecord,
+  upsertFeatureRecord
 } from '@/utils/supabase/admin';
 
 const relevantEvents = new Set([
@@ -18,7 +19,8 @@ const relevantEvents = new Set([
   'checkout.session.completed',
   'customer.subscription.created',
   'customer.subscription.updated',
-  'customer.subscription.deleted'
+  'customer.subscription.deleted',
+  'customer.entitlement_summary.updated'
 ]);
 
 export async function POST(req: Request) {
@@ -63,6 +65,9 @@ export async function POST(req: Request) {
             subscription.customer as string,
             event.type === 'customer.subscription.created'
           );
+          break;
+        case 'customer.entitlement_summary.updated':
+          await upsertFeatureRecord(event.data.object as Stripe.Entitlement);
           break;
         case 'checkout.session.completed':
           const checkoutSession = event.data.object as Stripe.Checkout.Session;
