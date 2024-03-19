@@ -25,7 +25,7 @@ interface PriceWithProduct extends Price {
 interface SubscriptionWithProduct extends Subscription {
   prices: PriceWithProduct | null;
 }
-interface EntitlementsWithFeatures extends Product {
+interface EntitlementsWithFeatures extends Entitlement {
   entitlements: Entitlement[];
 }
 
@@ -46,6 +46,15 @@ export default function Pricing({ user, products, subscription, entitlements }: 
       )
     )
   );
+
+  // const features = Array.from (
+  //   new Set(
+  //     entitlements.flatMap((features) =>
+  //       features?.map((feature) => feature.access)
+  //     )
+  //   )
+  // );
+
   const router = useRouter();
   const [billingInterval, setBillingInterval] =
     useState<BillingInterval>('month');
