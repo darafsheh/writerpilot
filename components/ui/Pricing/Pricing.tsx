@@ -49,8 +49,8 @@ export default function Pricing({ user, products, subscription, entitlements }: 
 
   // const features = Array.from (
   //   new Set(
-  //     entitlements.flatMap((features) =>
-  //       features?.map((feature) => feature.access)
+  //     entitlements.flatMap((features2) =>
+  //       features2?.map((feature) => feature.access)
   //     )
   //   )
   // );
@@ -125,6 +125,8 @@ export default function Pricing({ user, products, subscription, entitlements }: 
             <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
               Pricing Plans
               {entitlements.length}
+              -
+              {user?.email}
             </h1>
             <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
               Start building for free, then add a site plan to go live. Account
