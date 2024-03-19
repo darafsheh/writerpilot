@@ -14,6 +14,8 @@ import { useState } from 'react';
 type Subscription = Tables<'subscriptions'>;
 type Product = Tables<'products'>;
 type Price = Tables<'prices'>;
+type Entitlement = Tables<'customers'>;
+
 interface ProductWithPrices extends Product {
   prices: Price[];
 }
@@ -23,16 +25,20 @@ interface PriceWithProduct extends Price {
 interface SubscriptionWithProduct extends Subscription {
   prices: PriceWithProduct | null;
 }
+interface EntitlementsWithFeatures extends Product {
+  entitlements: Entitlement[];
+}
 
 interface Props {
   user: User | null | undefined;
   products: ProductWithPrices[];
   subscription: SubscriptionWithProduct | null;
+  entitlements: EntitlementsWithFeatures[];
 }
 
 type BillingInterval = 'lifetime' | 'year' | 'month';
 
-export default function Pricing({ user, products, subscription }: Props) {
+export default function Pricing({ user, products, subscription, entitlements }: Props) {
   const intervals = Array.from(
     new Set(
       products.flatMap((product) =>
@@ -109,6 +115,7 @@ export default function Pricing({ user, products, subscription }: Props) {
           <div className="sm:flex sm:flex-col sm:align-center">
             <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
               Pricing Plans
+              {entitlements.length}
             </h1>
             <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
               Start building for free, then add a site plan to go live. Account

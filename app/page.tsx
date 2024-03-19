@@ -26,11 +26,17 @@ export default async function PricingPage() {
     .order('metadata->index')
     .order('unit_amount', { referencedTable: 'prices' });
 
+  const { data: entitlements } = await supabase
+    .from('customers')
+    .select('*, customers(*)');
+
   return (
     <Pricing
       user={user}
       products={products ?? []}
       subscription={subscription}
+      //@ts-expect-error
+      entitlements={entitlements}
     />
   );
 }
