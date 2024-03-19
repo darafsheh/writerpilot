@@ -36,7 +36,7 @@ export default async function PricingPage() {
       products={products ?? []}
       subscription={subscription}
       //@ts-expect-error
-      entitlements={entitlements}
+      entitlements={entitlements ?? []}
     />
   );
 }
