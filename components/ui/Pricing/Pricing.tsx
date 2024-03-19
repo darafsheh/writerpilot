@@ -26,7 +26,7 @@ interface SubscriptionWithProduct extends Subscription {
   prices: PriceWithProduct | null;
 }
 interface EntitlementsWithFeatures extends Entitlement {
-  entitlements: Entitlement[];
+  access: Entitlement[];
 }
 
 interface Props {
