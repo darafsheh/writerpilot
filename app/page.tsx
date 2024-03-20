@@ -28,7 +28,7 @@ export default async function PricingPage() {
 
   const { data: entitlements } = await supabase
     .from('customers')
-    //.select('*');
+    .select('access');
     //debugger;
 
   return (
