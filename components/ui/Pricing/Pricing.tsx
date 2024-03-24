@@ -25,15 +25,15 @@ interface PriceWithProduct extends Price {
 interface SubscriptionWithProduct extends Subscription {
   prices: PriceWithProduct | null;
 }
-interface EntitlementsWithFeatures extends Entitlement {
-  access: Entitlement[];
-}
+// interface EntitlementsWithFeatures extends Entitlement {
+//   access: Entitlement[];
+// }
 
 interface Props {
   user: User | null | undefined;
   products: ProductWithPrices[];
   subscription: SubscriptionWithProduct | null;
-  entitlements: EntitlementsWithFeatures[];
+  entitlements: Entitlement[];
 }
 
 type BillingInterval = 'lifetime' | 'year' | 'month';
@@ -114,7 +114,10 @@ export default function Pricing({ user, products, subscription, entitlements }: 
         }
         return (
           <section className="bg-white">
-            <div>{feature?.lookup_key}</div>
+            <div>{
+            //@ts-expect-error
+            feature?.lookup_key
+            }</div>
           </section>
         )
       })

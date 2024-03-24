@@ -28,7 +28,7 @@ export default async function PricingPage() {
 
   const { data: entitlements } = await supabase
     .from('customers')
-    .select('access');
+    .select();
 
     console.log(entitlements);
 
@@ -37,7 +37,6 @@ export default async function PricingPage() {
       user={user}
       products={products ?? []}
       subscription={subscription}
-      //@ts-expect-error
       entitlements={entitlements ?? []}
     />
   );
