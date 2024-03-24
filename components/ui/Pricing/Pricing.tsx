@@ -26,7 +26,7 @@ interface SubscriptionWithProduct extends Subscription {
   prices: PriceWithProduct | null;
 }
 interface EntitlementsWithFeatures extends Entitlement {
-  access: Entitlement;
+  access: Entitlement[];
 }
 
 interface Props {
@@ -99,6 +99,26 @@ export default function Pricing({ user, products, subscription, entitlements }: 
     setPriceIdLoading(undefined);
   };
 
+  console.log(entitlements.length)
+  if (entitlements.length > 0) {
+    console.log(entitlements.length)
+    entitlements?.map((access2) => {
+      console.log(access2?.access.length);
+      console.log("herrrrr")
+      access2?.access.map((feature) => {
+        console.log(feature.lookup_key);
+        if (feature.lookup_key == "editor"){
+          console.log("I AM IN NEO!");
+        }
+        return (
+          <section className="bg-white">
+            <div>{feature?.lookup_key}</div>
+          </section>
+        )
+      })
+    })
+  }
+
   if (!products.length) {
     return (
       <section className="bg-black">
@@ -128,7 +148,7 @@ export default function Pricing({ user, products, subscription, entitlements }: 
             <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
               Pricing Plans
               {entitlements?.length}
-              {entitlements[0]?.access?.toString()}
+              {entitlements[0]?.access?.length}
               -
               {user?.email}
             </h1>
