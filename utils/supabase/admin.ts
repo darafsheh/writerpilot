@@ -56,7 +56,7 @@ const upsertFeatureRecord = async (entitlement: Stripe.CustomerEntitlementSummar
   const EntitlementData: Entitlement = {
     id: uuid,
     stripe_customer_id: entitlement.customer,
-    access: entitlement.entitlements.data as Json ?? null
+    access: entitlement.entitlements.data as Json[] ?? null
   };
 
   const { error: upsertError } = await supabaseAdmin
