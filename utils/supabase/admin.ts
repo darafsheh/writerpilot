@@ -37,6 +37,7 @@ const upsertProductRecord = async (product: Stripe.Product) => {
 };
 
 //Update Customer Entitlements upon webhook
+//@ts-expect-error
 const upsertFeatureRecord = async (entitlement: Stripe.CustomerEntitlementSummary) => {
   console.log("Entitlements webhook recieved...");
 
@@ -55,7 +56,6 @@ const upsertFeatureRecord = async (entitlement: Stripe.CustomerEntitlementSummar
   const EntitlementData: Entitlement = {
     id: uuid,
     stripe_customer_id: entitlement.customer,
-    //@ts-expect-error
     access: entitlement.entitlements.data as Json ?? null
   };
 

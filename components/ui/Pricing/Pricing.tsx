@@ -54,6 +54,9 @@ export default function Pricing({ user, products, subscription, entitlements }: 
   //     )
   //   )
   // );
+  if(!entitlements) {
+    entitlements = [];
+  }
 
   const router = useRouter();
   const [billingInterval, setBillingInterval] =
@@ -124,8 +127,8 @@ export default function Pricing({ user, products, subscription, entitlements }: 
           <div className="sm:flex sm:flex-col sm:align-center">
             <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
               Pricing Plans
-              {entitlements.length}
-              {entitlements[0].access.toString()}
+              {entitlements?.length}
+              {entitlements[0]?.access.toString()}
               -
               {user?.email}
             </h1>
