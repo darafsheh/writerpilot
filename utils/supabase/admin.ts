@@ -56,7 +56,7 @@ const upsertFeatureRecord = async (entitlement: Stripe.CustomerEntitlementSummar
   const EntitlementData: Entitlement = {
     id: uuid,
     stripe_customer_id: entitlement.customer,
-    access: entitlement.entitlements.data as Json[] ?? null
+    access: entitlement.entitlements.data as [{id: string, livemode: boolean, feature: string, lookup_key: string}] ?? null
   };
 
   const { error: upsertError } = await supabaseAdmin
@@ -127,7 +127,7 @@ const deletePriceRecord = async (price: Stripe.Price) => {
 const upsertCustomerToSupabase = async (uuid: string, customerId: string) => {
   const { error: upsertError } = await supabaseAdmin
     .from('customers')
-    .upsert([{ id: uuid, stripe_customer_id: customerId, access:[] }]);
+    .upsert([{ id: uuid, stripe_customer_id: customerId, access: [] }]);
 
   if (upsertError)
     throw new Error(`Supabase customer record creation failed: ${upsertError.message}`);

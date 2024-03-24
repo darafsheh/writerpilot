@@ -106,16 +106,13 @@ export default function Pricing({ user, products, subscription, entitlements }: 
       console.log(access2?.access.length);
       console.log("herrrrr")
       access2?.access.map((feature) => {
-        //@ts-expect-error
         console.log(feature.lookup_key);
-        //@ts-expect-error
         if (feature.lookup_key == "editor"){
           console.log("I AM IN NEO!");
         }
         return (
           <section className="bg-white">
             <div>{
-            //@ts-expect-error
             feature?.lookup_key
             }</div>
           </section>
