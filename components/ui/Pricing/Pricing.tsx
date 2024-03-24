@@ -151,6 +151,15 @@ export default function Pricing({ user, products, subscription, entitlements }: 
               Pricing Plans
               {entitlements?.length}
               {entitlements[0]?.access?.length}
+              {
+                entitlements[0]?.access.map((feature) => {
+                  return(
+                    <div>
+                      {feature?.lookup_key}
+                    </div>
+                  )
+                })
+              }
               -
               {user?.email}
             </h1>
