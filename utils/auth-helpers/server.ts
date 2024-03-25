@@ -164,6 +164,10 @@ export async function signInWithPassword(formData: FormData) {
   return redirectPath;
 }
 
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 export async function signUp(formData: FormData) {
   const callbackURL = getURL('/auth/callback');
 
@@ -212,6 +216,8 @@ export async function signUp(formData: FormData) {
     let freemiumSubscription : string;
     freemiumSubscription = await createFreemiumSubscription(createStripeCustomer);
     // ---
+    //sleep for 4 second for entitlements
+    await delay(4000);
     redirectPath = getStatusRedirect('/editor', 'Success!', 'You are now signed in.');
   } else if (
     data.user &&
