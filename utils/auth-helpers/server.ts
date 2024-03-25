@@ -212,7 +212,7 @@ export async function signUp(formData: FormData) {
     let freemiumSubscription : string;
     freemiumSubscription = await createFreemiumSubscription(createStripeCustomer);
     // ---
-    redirectPath = getStatusRedirect('/', 'Success!', 'You are now signed in.');
+    redirectPath = getStatusRedirect('/editor', 'Success!', 'You are now signed in.');
   } else if (
     data.user &&
     data.user.identities &&

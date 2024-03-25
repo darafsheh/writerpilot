@@ -266,10 +266,10 @@ export default function Pricing({ user, products, subscription, entitlements }: 
                     </span>
                   </div>
                   <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                    Write and publish faster
+                    AI Writing Tool
                   </h1>
                   <p className="mt-6 text-lg leading-8 text-gray-300">
-                    An AI tool to help you write faster and repurpose your content to publish in different channels.
+                    Wwrite faster and repurpose your content<br/> This is a demo SaaS app.
                   </p>
                   <div className="mt-10 flex items-center gap-x-6">
                     <a

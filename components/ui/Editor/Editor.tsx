@@ -164,6 +164,16 @@ export default function Editor({ user, products, subscription, entitlements }: P
                     return(
                       <div className=''>
                         {/* {feature?.lookup_key} */}
+                        {feature?.lookup_key == "premium" && 
+                            (
+                                <div className='mb-5 pointer-events-auto flex items-center justify-between gap-x-6 bg-green-900 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5'>
+                                    <span className='block w-full border-0 text-lg font-medium placeholder:text-gray-600 focus:ring-0 text-gray-200'>
+                                        You have access to premium features!
+                                    </span>
+                                </div>
+
+                            )
+                        }
                         {feature?.lookup_key == "basic" && 
                             (
                                 <div className=''>
@@ -175,7 +185,7 @@ export default function Editor({ user, products, subscription, entitlements }: P
                                             name="title"
                                             id="title"
                                             className="h-52 pl-5 block bg-gray-800 w-full border-0 pt-2.5 text-lg font-medium placeholder:text-gray-600 focus:ring-0 text-gray-200"
-                                            placeholder="Write a your content here..."
+                                            placeholder="You have access to the AI editor. Write a your content here..."
                                             />
 
                                             {/* Spacer element to match the height of the toolbar */}
@@ -216,16 +226,6 @@ export default function Editor({ user, products, subscription, entitlements }: P
                                         </div>
                                         </form>
                                 </div>
-                            )
-                        }
-                        {feature?.lookup_key == "premium" && 
-                            (
-                                <div className='mb-5 pointer-events-auto flex items-center justify-between gap-x-6 bg-green-900 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5'>
-                                    <span className='block w-full border-0 text-lg font-medium placeholder:text-gray-600 focus:ring-0 text-gray-200'>
-                                        You have access to premium features!
-                                    </span>
-                                </div>
-
                             )
                         }
                       </div>
