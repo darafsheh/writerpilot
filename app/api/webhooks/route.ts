@@ -20,7 +20,7 @@ const relevantEvents = new Set([
   'customer.subscription.created',
   'customer.subscription.updated',
   'customer.subscription.deleted',
-  'customer.entitlement_summary.updated'
+  'entitlements.active_entitlement_summary.updated'
 ]);
 
 export async function POST(req: Request) {
@@ -68,8 +68,9 @@ export async function POST(req: Request) {
           break;
         //@ts-expect-error
         case 'entitlements.active_entitlement_summary.updated':
+          console.log("Just got Entitlements webhook.")
         //@ts-expect-error
-          await upsertFeatureRecord(event.data.object as Stripe.CustomerEntitlementSummary);
+          await upsertFeatureRecord(event.data.object as Stripe.EntitlementSummary);
           break;
         case 'checkout.session.completed':
           const checkoutSession = event.data.object as Stripe.Checkout.Session;
