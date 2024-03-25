@@ -21,16 +21,17 @@ export default function Navlinks({ user }: NavlinksProps) {
         <Link href="/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
-        <nav className="ml-6 space-x-2 lg:block">
-          <Link href="/" className={s.link}>
-            Pricing
-          </Link>
+          <Link href="/" className="ml-6 font-b">WriterPilot</Link>
           {user && (
-            <Link href="/account" className={s.link}>
-              Account
-            </Link>
+            <nav className="ml-6 space-x-2 lg:block">
+              <Link href="/editor" className={s.link}>
+                Editor
+              </Link>
+              <Link href="/" className={s.link}>
+                Plans
+              </Link>
+            </nav>
           )}
-        </nav>
       </div>
       <div className="flex justify-end space-x-8">
         {user ? (
