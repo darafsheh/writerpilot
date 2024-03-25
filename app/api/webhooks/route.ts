@@ -67,7 +67,7 @@ export async function POST(req: Request) {
           );
           break;
         //@ts-expect-error
-        case 'customer.entitlement_summary.updated':
+        case 'entitlements.active_entitlement_summary.updated':
         //@ts-expect-error
           await upsertFeatureRecord(event.data.object as Stripe.CustomerEntitlementSummary);
           break;
