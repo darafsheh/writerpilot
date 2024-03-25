@@ -70,7 +70,7 @@ export async function POST(req: Request) {
         case 'entitlements.active_entitlement_summary.updated':
           console.log("Just got Entitlements webhook.")
         //@ts-expect-error
-          await upsertFeatureRecord(event.data.object as Stripe.EntitlementSummary);
+          await upsertFeatureRecord(event.data.object as Stripe.ActiveEntitlementSummary);
           break;
         case 'checkout.session.completed':
           const checkoutSession = event.data.object as Stripe.Checkout.Session;
