@@ -375,7 +375,7 @@ export default function Pricing({ user, products, subscription, entitlements }: 
                         onClick={() => handleStripeCheckout(price)}
                         className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-indigo-400 focus-visible:outline-indigo-500"
                       >
-                        {subscription ? 'Sign up' : 'Select Plan'}
+                        {subscription ? 'Select Plan' : 'Sign Up'}
                       </Button>
                     </div>
                   </div>
