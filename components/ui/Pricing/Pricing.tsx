@@ -294,19 +294,6 @@ export default function Pricing({ user, products, subscription, entitlements }: 
             <div className="sm:flex sm:flex-col sm:align-center">
               <h1 className="text-4xl font-extrabold text-white sm:text-center sm:text-6xl">
                 Pricing Plans
-                {entitlements?.length}
-                {entitlements[0]?.access?.length}
-                {
-                  entitlements[0]?.access.map((feature) => {
-                    return(
-                      <div>
-                        {feature?.lookup_key}
-                      </div>
-                    )
-                  })
-                }
-                -
-                {user?.email}
               </h1>
               <p className="max-w-2xl m-auto mt-5 text-xl text-zinc-200 sm:text-center sm:text-2xl">
                 Start writing for free. Premium plan unlock additional features.
