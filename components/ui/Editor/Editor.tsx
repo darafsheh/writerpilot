@@ -162,11 +162,11 @@ export default function Editor({ user, products, subscription, entitlements }: P
                 {
                   entitlements[0]?.access.map((feature) => {
                     return(
-                      <div className='flex'>
+                      <div className=''>
                         {/* {feature?.lookup_key} */}
                         {feature?.lookup_key == "basic" && 
                             (
-                                <div className='flex-grow'>
+                                <div className=''>
                                     <form action="#" className="relative bg-gray-800">
                                         <div className="overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
                                         
@@ -220,11 +220,12 @@ export default function Editor({ user, products, subscription, entitlements }: P
                         }
                         {feature?.lookup_key == "premium" && 
                             (
-                                <div className='flex ml-5 w-40 text-left p-5 border-gray-300 bg-indigo-800 overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500'>
-                                    <span className='block w-full border-0 pt-2.5 text-lg font-medium placeholder:text-gray-600 focus:ring-0 text-gray-200'>
+                                <div className='mb-5 pointer-events-auto flex items-center justify-between gap-x-6 bg-green-900 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5'>
+                                    <span className='block w-full border-0 text-lg font-medium placeholder:text-gray-600 focus:ring-0 text-gray-200'>
                                         You have access to premium features!
                                     </span>
                                 </div>
+
                             )
                         }
                       </div>
