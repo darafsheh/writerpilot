@@ -164,7 +164,7 @@ export default function Editor({ user, products, subscription, entitlements }: P
                     return(
                       <div className='flex'>
                         {/* {feature?.lookup_key} */}
-                        {feature?.lookup_key == "editor" && 
+                        {feature?.lookup_key == "basic" && 
                             (
                                 <div className='flex-grow'>
                                     <form action="#" className="relative bg-gray-800">
