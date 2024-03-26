@@ -276,7 +276,7 @@ export default function Pricing({ user, products, subscription, entitlements }: 
                       href="/signin/signup"
                       className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
                     >
-                      Sign Up
+                      Sign up for free
                     </a>
                   </div>
                 </div>
@@ -375,7 +375,7 @@ export default function Pricing({ user, products, subscription, entitlements }: 
                         onClick={() => handleStripeCheckout(price)}
                         className="block w-full py-2 mt-8 text-sm font-semibold text-center text-white rounded-md hover:bg-indigo-400 focus-visible:outline-indigo-500"
                       >
-                        {subscription ? 'Select Plan' : 'Sign Up'}
+                        {subscription ? 'Select Plan' : 'Sign up'}
                       </Button>
                     </div>
                   </div>
