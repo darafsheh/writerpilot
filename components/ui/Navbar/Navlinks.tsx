@@ -35,12 +35,19 @@ export default function Navlinks({ user }: NavlinksProps) {
       </div>
       <div className="flex justify-end space-x-8">
         {user ? (
-          <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
-            <input type="hidden" name="pathName" value={usePathname()} />
-            <button type="submit" className={s.link}>
-              Sign out
-            </button>
-          </form>
+          <span className="inline-flex space-x-6">
+            <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-300 ring-1 ring-inset ring-indigo-500/20">
+              <span className='text-gray-600 font-normal'>logged in as </span>{user?.email}
+            </span>
+            <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
+              <form onSubmit={(e) => handleRequest(e, SignOut, router)}>
+                <input type="hidden" name="pathName" value={usePathname()} />
+                <button type="submit" className={s.link}>
+                  Sign out
+                </button>
+              </form>
+            </span>
+          </span>
         ) : (
           <Link href="/signin" className={s.link}>
             Sign In

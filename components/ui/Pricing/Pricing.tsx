@@ -261,7 +261,6 @@ export default function Pricing({ user, products, subscription, entitlements }: 
                       </span>
                       <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-300">
                         <span>Just shipped v1.0</span>
-                        
                       </span>
                     </span>
                   </div>
