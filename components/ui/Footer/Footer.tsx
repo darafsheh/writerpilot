@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-between py-12 space-y-4 md:flex-row bg-zinc-900">
         <div>
           <span>
-            &copy; {new Date().getFullYear()} WriterPilot, Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} WriterAI, Inc. All rights reserved.
           </span>
         </div>
         <div className="flex items-center">

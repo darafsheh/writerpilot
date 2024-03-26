@@ -21,7 +21,7 @@ export default function Navlinks({ user }: NavlinksProps) {
         <Link href="/" className={s.logo} aria-label="Logo">
           <Logo />
         </Link>
-          <Link href="/" className="ml-6 font-b">WriterPilot</Link>
+          <Link href="/" className="ml-6 font-b">WriterAI</Link>
           {user && (
             <nav className="ml-6 space-x-2 lg:block">
               <Link href="/editor" className={s.link}>
