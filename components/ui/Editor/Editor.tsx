@@ -174,7 +174,7 @@ export default function Editor({ user, products, subscription, entitlements }: P
 
                             )
                         }
-                        {feature?.lookup_key == "basic" && 
+                        { //feature?.lookup_key == "basic" && 
                             (
                                 <div className=''>
                                     <form action="#" className="relative bg-gray-800">
